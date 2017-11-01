@@ -11,20 +11,12 @@ import java.util.List;
 public class Test {
 
     public static void main(String[] args) {
-        List<User> list = new ArrayList<>();
-        list.add(new User("2"));
-        list.add(new User("3"));
-//        list.add(new User("3"));
-//        list.add(new User("4"));
-//        list.add(new User("5"));
-
-        List<User> finalList = new ArrayList<>();
-        finalList.addAll(list);
-        System.out.println(Arrays.toString(finalList.toArray()));
-
-        String a = "adsfzxcvbnm,123";
-
-        Constructor cons;
+       int a = 0;
+       int b =96;
+        String r = 1.0 * a / b * 100 + "0000";
+        System.out.println(r);
+        r = r.substring(0,r.indexOf(".")+3);
+        System.out.println(r);
 
     }
 
