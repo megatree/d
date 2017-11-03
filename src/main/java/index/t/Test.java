@@ -11,12 +11,8 @@ import java.util.List;
 public class Test {
 
     public static void main(String[] args) {
-       int a = 0;
-       int b =96;
-        String r = 1.0 * a / b * 100 + "0000";
-        System.out.println(r);
-        r = r.substring(0,r.indexOf(".")+3);
-        System.out.println(r);
+        System.out.println(13/10.0);
+        System.out.println(Math.ceil(13/10.0));
 
     }
 
