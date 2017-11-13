@@ -1,4 +1,4 @@
-package index.linkedlist;
+package index.collections.linkedlist;
 
 /**
  * Created by wangzhe.bj on 2017/7/13.

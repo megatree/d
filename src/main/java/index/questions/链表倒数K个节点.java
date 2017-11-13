@@ -1,6 +1,6 @@
 package index.questions;
 
-import index.linkedlist.Node;
+import index.collections.linkedlist.Node;
 
 /**
  * 查找链表中倒数第K个节点

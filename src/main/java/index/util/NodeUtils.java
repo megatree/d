@@ -1,6 +1,6 @@
 package index.util;
 
-import index.linkedlist.Node;
+import index.collections.linkedlist.Node;
 
 /**
  * Created by wangzhe.bj on 2017/11/5.

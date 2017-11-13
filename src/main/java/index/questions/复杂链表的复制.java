@@ -1,6 +1,6 @@
 package index.questions;
 
-import index.linkedlist.ComplexNode;
+import index.collections.linkedlist.ComplexNode;
 
 /**
  * Created by wangzhe.bj on 2017/11/5.

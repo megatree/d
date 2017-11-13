@@ -1,6 +1,6 @@
 package index.questions;
 
-import index.linkedlist.Node;
+import index.collections.linkedlist.Node;
 import index.util.NodeUtils;
 
 /**

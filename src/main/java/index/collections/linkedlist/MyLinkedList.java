@@ -1,4 +1,4 @@
-package index.linkedlist;
+package index.collections.linkedlist;
 
 import java.io.Serializable;
 
