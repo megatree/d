@@ -12,7 +12,10 @@ public class TestMyArrayList {
         list.add("2");
         list.add("3");
 
-        System.out.println(list.get(4));
+        System.out.println(list.get(2));
+        list.printInfo();
+
+        list.remove(1);
         list.printInfo();
     }
 }

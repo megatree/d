@@ -11,8 +11,9 @@ import java.util.List;
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println(13/10.0);
-        System.out.println(Math.ceil(13/10.0));
+        byte a = 'B';
+        char b = 'B';
+
 
     }
 

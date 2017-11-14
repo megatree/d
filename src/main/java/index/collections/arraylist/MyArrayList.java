@@ -55,6 +55,22 @@ public class MyArrayList<E> implements Serializable, Cloneable {
         return true;
     }
 
+    public E remove(int index) {
+        if (rangeCheck(index)) {
+            throw new IllegalArgumentException("index out of bounds");
+        }
+
+        E oldv = (E) elementData[index];
+
+        int numMoved = size - 1 - index;
+        if (numMoved > 0) {
+            System.arraycopy(elementData, index + 1, elementData, index, numMoved);
+        }
+
+        elementData[--size] = null;
+        return oldv;
+    }
+
     private boolean rangeCheck(int index) {
         return index >= size;
     }
