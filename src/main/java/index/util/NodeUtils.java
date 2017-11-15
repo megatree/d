@@ -18,4 +18,27 @@ public class NodeUtils {
         }
         return head;
     }
+
+    public static Node getLastNode(Node head) {
+        Node t = head;
+        Node tail = null;
+        while (t != null) {
+            tail = t;
+            t = t.getNext();
+        }
+        return tail;
+    }
+
+    public static Node getIndexedNode(Node head, int index) {
+        Node t = head;
+        int i = 0;
+        while (t != null) {
+            if (i == index) {
+                return t;
+            }
+            t = t.getNext();
+            i++;
+        }
+        return null;
+    }
 }
