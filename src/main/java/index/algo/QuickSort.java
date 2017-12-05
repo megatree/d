@@ -31,7 +31,7 @@ public class QuickSort {
         quickSort2(array, 0, array.length - 1);
     }
 
-    private void quickSort2(int[] src, int begin, int end) {
+    public static void quickSort2(int[] src, int begin, int end) {
         if (src == null) {
             throw new RuntimeException("非法参数");
         }
@@ -52,7 +52,7 @@ public class QuickSort {
 
     }
 
-    private void quickSort(int[] src, int begin, int end) {
+    private static void quickSort(int[] src, int begin, int end) {
         if (begin < end) {
 
             int key = src[begin];

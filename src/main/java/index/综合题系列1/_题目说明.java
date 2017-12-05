@@ -1,4 +1,4 @@
-package index.questions;
+package index.综合题系列1;
 
 /**
  * 作者：君若雅
