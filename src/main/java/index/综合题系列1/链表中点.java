@@ -24,14 +24,19 @@ public class 链表中点 {
         int ptrSlow = 0;
         int index=0;
 
+        Node l = h;
         while (h != null) {
             index++;
 
-
+            if (index%2==0){
+                l = l.getNext();
+            }
 
 
             h = h.getNext();
         }
+
+        System.out.println(l.getData());
     }
 
 

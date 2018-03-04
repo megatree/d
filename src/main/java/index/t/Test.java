@@ -12,9 +12,6 @@ import java.util.List;
 public class Test {
 
     public static void main(String[] args) throws IllegalAccessException {
-        String c = null;
-        String d = (c="北京市").substring(0,c.length()-1);
-        System.out.println(d);
 
 
     }
