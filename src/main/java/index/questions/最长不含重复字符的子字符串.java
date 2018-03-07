@@ -7,15 +7,24 @@ public class 最长不含重复字符的子字符串 {
 
     public static void main(String[] args) {
 
-        String s = "123456712345";
+        String s = "1234567489abc";
         System.out.println(findLongestString(s));
 
     }
 
 
+    /**
+     * 俩首尾指针，两套存历史、当前
+     * 记录重复次数，若重复，找到当前字符上次出现位置，加一作为首索引
+     * 当前指针和历史指针比较长度，替换
+     * @param s
+     * @return
+     */
     public static String findLongestString(String s) {
 
-        int[] position = new int[128];
+        int[] showCount = new int[128];
+        int[] showIndex = new int[128];
+
         char[] arr = s.toCharArray();
 
         /** 历史存储最长字符串起止索引 */
@@ -35,9 +44,9 @@ public class 最长不含重复字符的子字符串 {
             //更新当前末端索引
             curIx1 = i;
 
-            //当前字符重复，重新指定当前前端索引
-            if (position[c] == version) {
-                curIx0 = i;
+            //当前字符重复，重新指定当前前端索引，为此字符上次出现位置的下一索引位置
+            if (showCount[c] == version) {
+                curIx0 = showIndex[c] + 1;
                 version++;
             }
 
@@ -48,7 +57,8 @@ public class 最长不含重复字符的子字符串 {
             }
 
             //最后在position中将此字符版本号+1
-            position[c] += 1;
+            showCount[c] += 1;
+            showIndex[c] = i;
         }
 
 

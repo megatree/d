@@ -19,6 +19,11 @@ public class 打印字符串的所有排列 {
         System.out.println(Arrays.toString(list.toArray()));
     }
 
+    /**
+     * 递归全排列
+     * @param str
+     * @param i
+     */
     public static void permutation(char[] str, int i) {
         if (i >= str.length) {
             return;
@@ -33,6 +38,7 @@ public class 打印字符串的所有排列 {
 
                 permutation(str, i + 1);
 
+                //字符恢复原状
                 temp = str[j];
                 str[j] = str[i];
                 str[i] = temp;
@@ -41,6 +47,11 @@ public class 打印字符串的所有排列 {
     }
 
 
+    /**
+     * 递归方式全排列2
+     * @param str
+     * @return
+     */
     public static ArrayList Permutation2(String str) {
         ArrayList res = new ArrayList();
         if (str != null && str.length() > 0) {
