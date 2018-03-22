@@ -1,36 +1,24 @@
 package index.collections.linkedlist;
 
 /**
- * Created by wangzhe.bj on 2017/7/13.
+ * Created by wangzhe.bj on 2018/3/23.
  */
-public class Node {
+public class DoubleNode {
 
-    public int  data;
-    public Node next;
+    public int data;
+    public DoubleNode prev;
+    public DoubleNode next;
 
-    public Node(int data) {
+    public DoubleNode(int data) {
         this.data = data;
-    }
-
-    public int getData() {
-        return data;
-    }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        if (prev!=null){
+            stringBuilder.append("<-");
+        }
         stringBuilder.append("[" + data + "]->");
         if (next == null) {
             String r = stringBuilder.toString();

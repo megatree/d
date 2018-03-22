@@ -1,6 +1,6 @@
 package index.综合题系列1;
 
-import index.algo.QuickSort;
+import index.basicAlgo.QuickSort;
 
 /**
  * Created by wangzhe.bj on 2017/12/5.

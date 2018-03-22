@@ -1,4 +1,4 @@
-package index.algo;
+package index.basicAlgo;
 
 /**
  * Created by wangzhe.bj on 2017/8/3.

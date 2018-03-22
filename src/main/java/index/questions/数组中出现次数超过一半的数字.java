@@ -1,6 +1,6 @@
 package index.questions;
 
-import index.algo.Sorts;
+import index.basicAlgo.Sorts;
 
 import java.util.Arrays;
 

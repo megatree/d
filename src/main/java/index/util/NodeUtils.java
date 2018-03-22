@@ -8,10 +8,14 @@ import index.collections.linkedlist.Node;
 public class NodeUtils {
 
     public static Node createNodeList(int length) {
-        Node head = new Node(1);
+        return createNodeList(length, 1);
+    }
+
+    public static Node createNodeList(int length, int begin) {
+        Node head = new Node(begin);
         Node cur = head;
 
-        for (int i = 1; i < length; i++) {
+        for (int i = begin; i < begin+length-1; i++) {
             Node t = new Node(i + 1);
             cur.setNext(t);
             cur = t;

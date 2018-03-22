@@ -1,4 +1,4 @@
-package index.algo;
+package index.basicAlgo;
 
 import java.util.Arrays;
 
