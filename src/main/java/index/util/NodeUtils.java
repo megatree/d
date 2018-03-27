@@ -1,5 +1,6 @@
 package index.util;
 
+import index.collections.linkedlist.DoubleNode;
 import index.collections.linkedlist.Node;
 
 /**
@@ -21,6 +22,21 @@ public class NodeUtils {
             cur = t;
         }
         return head;
+    }
+
+    public static DoubleNode createDoubleNodeList(int length,int begin){
+        DoubleNode head = new DoubleNode(begin);
+        DoubleNode cur = head;
+
+        for (int i = begin; i < begin+length-1; i++) {
+            DoubleNode t = new DoubleNode(i + 1);
+            cur.next = t;
+            t.prev = cur;
+            cur = t;
+        }
+        return head;
+
+
     }
 
     public static Node getLastNode(Node head) {
