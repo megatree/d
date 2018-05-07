@@ -17,8 +17,8 @@ import java.util.Map;
 public class CT {
 
     public static void main(String[] args) throws IOException {
-//        String url = "https://www.gstatic.com/ct/log_list/all_logs_list.json";
-        String url = "https://www.gstatic.com/ct/log_list/log_list.json";
+        String url = "https://www.gstatic.com/ct/log_list/all_logs_list.json";
+//        String url = "https://www.gstatic.com/ct/log_list/log_list.json";
         Map<String,String> idNames = Maps.newHashMap();
 
         OkHttpClient client = new OkHttpClient();
