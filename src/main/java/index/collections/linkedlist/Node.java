@@ -24,8 +24,9 @@ public class Node {
         return next;
     }
 
-    public void setNext(Node next) {
+    public Node setNext(Node next) {
         this.next = next;
+        return this;
     }
 
     @Override

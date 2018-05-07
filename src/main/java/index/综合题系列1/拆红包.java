@@ -1,4 +1,4 @@
-package index.正确程序写法;
+package index.综合题系列1;
 
 import java.util.Random;
 

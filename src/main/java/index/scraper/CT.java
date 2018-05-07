@@ -17,7 +17,8 @@ import java.util.Map;
 public class CT {
 
     public static void main(String[] args) throws IOException {
-        String url = "https://www.gstatic.com/ct/log_list/all_logs_list.json";
+        String url = "https://ct.grahamedgecombe.com/logs.json";
+//        String url = "https://www.gstatic.com/ct/log_list/all_logs_list.json";
 //        String url = "https://www.gstatic.com/ct/log_list/log_list.json";
         Map<String,String> idNames = Maps.newHashMap();
 
@@ -32,24 +33,36 @@ public class CT {
         JSONObject root = JSON.parseObject(r);
 
         JSONArray operators = root.getJSONArray("operators");
-        for (Object jo : operators) {
-            JSONObject o = (JSONObject)jo;
-            idNames.put(o.getString("id"),o.getString("name"));
+        if (operators!=null) {
+            for (Object jo : operators) {
+                JSONObject o = (JSONObject) jo;
+                idNames.put(o.getString("id"), o.getString("name"));
+            }
         }
 
 
         StringBuilder sb = new StringBuilder();
         JSONArray logs = root.getJSONArray("logs");
+//        logs.forEach(l ->{
+//            JSONObject log = (JSONObject) l;
+//            sb.append(log.getString("description")).append(",");
+//            sb.append(log.getString("key")).append(",");
+//            sb.append(log.getString("url")).append(",");
+//            sb.append(log.getString("maximum_merge_delay")).append(",");
+//            JSONArray ob = log.getJSONArray("operated_by");
+//            String name = idNames.getOrDefault(ob.getString(0),"无");
+//            sb.append(log.getString("dns_api_endpoint")).append(",");
+//            sb.append(name).append("\n");
+//        });
+
         logs.forEach(l ->{
             JSONObject log = (JSONObject) l;
             sb.append(log.getString("description")).append(",");
+            sb.append(log.getString("log_id")).append(",");
             sb.append(log.getString("key")).append(",");
             sb.append(log.getString("url")).append(",");
-            sb.append(log.getString("maximum_merge_delay")).append(",");
-            JSONArray ob = log.getJSONArray("operated_by");
-            String name = idNames.getOrDefault(ob.getString(0),"无");
-            sb.append(log.getString("dns_api_endpoint")).append(",");
-            sb.append(name).append("\n");
+            sb.append(log.getString("maximum_merge_delay"));
+            sb.append("\n");
 
         });
 
