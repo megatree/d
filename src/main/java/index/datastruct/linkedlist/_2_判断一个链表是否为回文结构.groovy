@@ -67,17 +67,39 @@ boolean isPalindrome(Node head) {
     Node f1 = head
     Node f2 = r1
 
+    //遍历，判断是否回文
+    println '准备比较'
     boolean flag = true
     while (f1 != null && f2 != null) {
+        println "f1[${f1.data}] : f2[${f2.data}]"
         if (f1.data != f2.data) {
             flag = false
+            break
         }
         f1 = f1.next
         f2 = f2.next
     }
 
+    println '准备复原链表'
+    println r1
 
-    false
+    //链表复原
+    Node t1 = r1
+    Node t2 = r1.next
+    Node tnext
+    t1.next = null
+    while (t2 != null) {
+        tnext = t2.next
+        t2.next = t1
+        t1 = t2
+        t2 = tnext
+    }
+
+    println '复原'
+    println head
+
+    println "这个链表[${flag?'是':'不是'}]回文链表"
+    flag
 }
 
 isPalindrome(head)
