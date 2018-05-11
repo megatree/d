@@ -52,7 +52,7 @@ public class QuickSort {
 
     }
 
-    private static void quickSort(int[] src, int begin, int end) {
+    public static void quickSort(int[] src, int begin, int end) {
         if (begin < end) {
 
             int key = src[begin];
