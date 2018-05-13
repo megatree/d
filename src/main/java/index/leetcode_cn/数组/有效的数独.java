@@ -37,6 +37,8 @@ public class 有效的数独 {
      * 传统方式
      * 更快的方式需要用 位运算，& | << 这些
      *
+     * 55.5%
+     *
      * @param board
      * @return
      */
