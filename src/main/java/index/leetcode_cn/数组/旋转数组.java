@@ -19,22 +19,58 @@ public class 旋转数组 {
         int[] arr = {1, 2, 3, 4, 5, 6, 7};
         int k = 3;
         rotate(arr, k);
-
+        System.out.println(Arrays.toString(arr));
     }
 
 
     /**
      * 3次翻转数组
+     *
      * @param nums
      * @param k
      */
     public void rotate(int[] nums, int k) {
+        if (nums == null || nums.length < 2) {
+            return;
+        }
 
+        int length = nums.length;
+        k = k % length;
+
+        rotateSelf(nums, 0, length - k - 1);
+
+        rotateSelf(nums, length - k, length - 1);
+
+        rotateSelf(nums, 0, nums.length - 1);
+    }
+
+    /**
+     * 反转数组
+     *
+     * @param arr
+     * @param start
+     * @param end
+     */
+    public void rotateSelf(int[] arr, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+
+        int temp;
+        while (start < end) {
+            temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+
+            start++;
+            end--;
+        }
 
     }
 
     /**
      * 元素挨个移动，慢
+     *
      * @param nums
      * @param k
      */
