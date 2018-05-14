@@ -20,9 +20,46 @@ public class 旋转图像 {
 
         rotate(matrix);
 
+        for (int i = 0; i < matrix.length; i++) {
+            for (int i1 = 0; i1 < matrix[i].length; i1++) {
+                System.out.print(matrix[i][i1] + " ");
+            }
+            System.out.println();
+        }
+
     }
 
+    /**
+     * 每一圈的四个位置依次swap
+     * @param matrix
+     */
     public void rotate(int[][] matrix) {
+        int n = matrix.length;
+        if (matrix == null || n < 2) {
+            return;
+        }
+
+        int cycle = n / 2;
+        for (int i = 0; i < cycle; i++) {
+            for (int j = 0; j < n - 2 * i - 1; j++) {
+                int temp = matrix[i][i + j];
+                matrix[i][i + j] = matrix[n - i - 1 - j][i];
+                matrix[n - i - 1 - j][i] = matrix[n - i - 1][n - i - 1 - j];
+                matrix[n - i - 1][n - i - 1 - j] = matrix[i + j][n - i - 1];
+                matrix[i + j][n - i - 1] = temp;
+            }
+        }
+
+    }
+
+
+    /**
+     * 94.70 %
+     * 时快时慢
+     *
+     * @param matrix
+     */
+    public void rotate_2(int[][] matrix) {
         int n = matrix.length;
         if (matrix == null || n < 2) {
             return;
@@ -45,8 +82,10 @@ public class 旋转图像 {
                     //i,j
                     int s = matrix[i][j];
 
-                    if (i1==0) {
+                    if (i1 == 0) {
                         putArray(arr, s, idx++);
+                    } else {
+                        matrix[i][j] = putMatrix(matrix, i, idx++, arr);
                     }
                 }
 
@@ -55,8 +94,10 @@ public class 旋转图像 {
                     //j,n-1-i
                     int s = matrix[j][n - 1 - i];
 
-                    if (i1==0) {
+                    if (i1 == 0) {
                         putArray(arr, s, idx++);
+                    } else {
+                        matrix[j][n - 1 - i] = putMatrix(matrix, i, idx++, arr);
                     }
                 }
 
@@ -65,8 +106,10 @@ public class 旋转图像 {
                     //n-1-i,j
                     int s = matrix[n - 1 - i][j];
 
-                    if (i1==0) {
+                    if (i1 == 0) {
                         putArray(arr, s, idx++);
+                    } else {
+                        matrix[n - 1 - i][j] = putMatrix(matrix, i, idx++, arr);
                     }
                 }
 
@@ -75,21 +118,21 @@ public class 旋转图像 {
                     //j,i
                     int s = matrix[j][i];
 
-                    if (i1==0) {
+                    if (i1 == 0) {
                         putArray(arr, s, idx++);
+                    } else {
+                        matrix[j][i] = putMatrix(matrix, i, idx++, arr);
                     }
                 }
-
             }
-            System.out.println(Arrays.toString(arr));
         }
-
 
 
     }
 
     /**
      * 按遍历顺序读数至数组
+     *
      * @param arr
      * @param data
      * @param index
@@ -100,15 +143,20 @@ public class 旋转图像 {
 
     /**
      * 从数组正确位置读数，写至矩阵(根据矩阵)
+     *
      * @param matrix
      * @param cycle
-     * @Param idx   //第几位数
      * @param arr
+     * @Param idx   //第几位数
      */
-    public void putMatrix(int[][] matrix,int cycle,int idx,int[] arr){
-        int n = matrix.length;
+    public int putMatrix(int[][] matrix, int cycle, int idx, int[] arr) {
+        //当前圈的阶数
+        int n = matrix.length - 2 * cycle;
+        //当前圈数组长度
+        int length = 4 * n - 4;
+        int index = (length - (n - 1) + idx) % length;
 
-
+        return arr[index];
     }
 
 
