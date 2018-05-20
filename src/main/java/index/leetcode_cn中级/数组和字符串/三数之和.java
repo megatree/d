@@ -41,19 +41,6 @@ public class 三数之和 {
             return result;
         }
 
-        if (len == 3) {
-            if (nums[0] + nums[1] + nums[2] == 0) {
-                List<Integer> temp = new LinkedList<>();
-                for (int i = 0; i < len; i++) {
-                    temp.add(nums[i]);
-                }
-                result.add(temp);
-                return result;
-            } else {
-                return result;
-            }
-        }
-
         //数组长度大于3
         Arrays.sort(nums);
 
@@ -61,17 +48,23 @@ public class 三数之和 {
         int stick = 0;
         int start = stick + 1;
         int end = len - 1;
+        int lastStick = nums[0];
 
-        boolean interrupt = false;
         List<Integer> midResult;
-
-        int lastStick = -1;
-        int lastStart = -1;
-
 
         //在剩余元素中遍历
         while (stick < len - 2) {
             int nStick = nums[stick];
+
+            //stick 不能重复
+            if (stick != 0 && nStick == lastStick) {
+                stick++;
+                start = stick + 1;
+                continue;
+            }
+
+            lastStick = nStick;
+
 
             if (nStick > 0) {
                 //此时已经不能找到合理答案了
@@ -79,12 +72,6 @@ public class 三数之和 {
             }
 
             while (start < end) {
-
-                if (nStick < 0 && nums[end] < 0) {
-                    //也不可能
-                    interrupt = true;
-                    break;
-                }
 
                 int sum = nStick + nums[start] + nums[end];
 
@@ -100,38 +87,30 @@ public class 三数之和 {
 
                 if (sum == 0) {
                     //判断重复
-                    if (result.size() > 0 && lastStart == nums[start] && lastStick == nStick) {
-                        start++;
-                    } else {
-                        //未发生重复
-                        midResult = new LinkedList<>();
-                        midResult.add(nStick);
-                        midResult.add(nums[start]);
-                        midResult.add(nums[end]);
-                        result.add(midResult);
+                    midResult = new LinkedList<>();
+                    midResult.add(nStick);
+                    midResult.add(nums[start]);
+                    midResult.add(nums[end]);
+                    result.add(midResult);
 
-                        //替换last
-                        lastStart = nums[start];
-                        lastStick = nStick;
-
+                    //跳过重复结点
+                    while (start < end && nums[start] == nums[start + 1]) {
                         start++;
+                    }
+                    //此时start为最后一个重复结点，须有右移
+
+                    while (start < end && nums[end - 1] == nums[end]) {
                         end--;
                     }
+
+                    start++;
+                    end--;
                 }
-
-
-            }
-
-            if (interrupt) {
-                break;
             }
 
             stick++;
             start = stick + 1;
 
-            while (end < len - 1 && start < end && nums[stick] + nums[start] + nums[end] < 0) {
-                end++;
-            }
         }
 
         return result;
