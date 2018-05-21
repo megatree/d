@@ -29,11 +29,19 @@ public class 三数之和 {
     public void go() {
         int[] arr = {-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6};
         List<List<Integer>> r = threeSum(arr);
-        r.forEach(list -> {
-            System.out.println(Arrays.toString(list.toArray()));
-        });
+        r.forEach(list -> System.out.println(Arrays.toString(list.toArray())));
     }
 
+    /**
+     * 54ms
+     * 98.94%
+     *
+     * 算法主要难点在记录上一次的 固定位值，使得下一次固定位值与本次不同
+     * 另外在同一个固定位，每次取得正确元素时，start end 均需要移动使其不同于上一次的值
+     *
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new LinkedList<>();
         int len = nums.length;
@@ -56,7 +64,7 @@ public class 三数之和 {
         while (stick < len - 2) {
             int nStick = nums[stick];
 
-            //stick 不能重复
+            //stick 不能重复，重复时向后移动
             if (stick != 0 && nStick == lastStick) {
                 stick++;
                 start = stick + 1;
@@ -108,9 +116,10 @@ public class 三数之和 {
                 }
             }
 
+            //固定位后移，end从末尾向前遍历
             stick++;
             start = stick + 1;
-
+            end = len - 1;
         }
 
         return result;
