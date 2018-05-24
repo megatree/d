@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by wangzhe.bj on 2018-05-24.
@@ -22,6 +23,7 @@ public class 中序遍历二叉树 {
 
     /**
      * 递归中序遍历
+     *
      * @param root
      * @return
      */
@@ -43,5 +45,32 @@ public class 中序遍历二叉树 {
         inorder(list, root.left);
         list.add(root.val);
         inorder(list, root.right);
+    }
+
+
+    /**
+     * 非递归中序遍历
+     *
+     * @param root
+     * @return
+     */
+    public List<Integer> inorderTraversal_1(TreeNode root) {
+        List<Integer> orderList = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode t = root;
+        while (t != null || stack.size() > 0) {
+
+            while (t != null) {
+                stack.push(t);
+                t = t.left;
+            }
+
+            if (stack.size() > 0) {
+                t = stack.pop();
+                orderList.add(t.val);
+                t = t.right;
+            }
+        }
+        return orderList;
     }
 }
