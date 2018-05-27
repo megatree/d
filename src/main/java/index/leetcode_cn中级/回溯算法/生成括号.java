@@ -24,20 +24,18 @@ import java.util.List;
  */
 public class 生成括号 {
 
-    private int          limitSize  = 0;
-    private int          unitLength = 0;
-    private int          leftTotal  = 0;
-    private int          left       = 0;
-    private char[]       unit;
-    private List<String> result     = new LinkedList<>();
-    private char[]       enums      = {'(', ')'};
+    private int limitSize  = 0;
+    private int unitLength = 0;
+    private char[] unit;
+    private List<String> result = new LinkedList<>();
+    private char[]       enums  = {'(', ')'};
 
     @Test
     public void go() {
-        System.out.println(generateParenthesis(3));
+        System.out.println(generateParenthesis_1(3));
     }
 
-    public List<String> generateParenthesis(int n) {
+    public List<String> generateParenthesis_1(int n) {
         if (n < 1) {
             return result;
         }
@@ -45,14 +43,17 @@ public class 生成括号 {
         limitSize = n;
         unitLength = 2 * n;
         unit = new char[unitLength];
-        dfs(0);
+        dfs(0,0,0);
         return result;
     }
 
     /**
+     * 错误解法，以后有思路再看(划掉)
+     * left lefttotal 状态不能作为全局变量
+     *
      * @param level
      */
-    public void dfs(int level) {
+    public void dfs(int level,int left,int leftTotal) {
         if (level >= unitLength) {
             //所有位置装填完毕
             result.add(new String(unit));
@@ -64,31 +65,61 @@ public class 生成括号 {
             //放右括号
             if (leftTotal >= limitSize || level == unitLength - 1 || left >= limitSize) {
                 unit[level] = enums[1];
-                left--;
-                dfs(level + 1);
+                dfs(level + 1,left-1,leftTotal);
                 return;
             }
 
             //放左括号
             if (level == 0 || left <= 0) {
                 unit[level] = enums[0];
-                left++;
-                leftTotal++;
-                dfs(level + 1);
+                dfs(level + 1,left+1,leftTotal+1);
                 return;
             }
 
             unit[level] = enums[i];
             if (i == 0) {
-                left++;
-                leftTotal++;
+                dfs(level + 1,left+1,leftTotal+1);
             } else {
                 //右括号
-                left--;
+                dfs(level + 1,left-1,leftTotal);
             }
-            dfs(level + 1);
+        }
+    }
+
+    /**
+     * 递归解法
+     *
+     * @param n
+     * @return
+     */
+    public List<String> generateParenthesis(int n) {
+        char[] buffer = new char[2 * n];
+        List<String> list = new LinkedList<>();
+        make(list, n, n, buffer, 0);
+        return list;
+    }
+
+    private void make(List<String> list, int leftRemain, int rightRemain, char[] buffer, int index) {
+        //左括号应该比右括号多，因此左括号剩余的少
+        if (leftRemain < 0 || leftRemain > rightRemain) {
+            return;
         }
 
+        if (leftRemain == 0 && rightRemain == 0) {
+            list.add(new String(buffer));
+            return;
+        }
+
+
+        if (leftRemain > 0) {
+            buffer[index] = '(';
+            make(list, leftRemain - 1, rightRemain, buffer, index + 1);
+        }
+
+        if (rightRemain > leftRemain) {
+            buffer[index] = ')';
+            make(list, leftRemain, rightRemain - 1, buffer, index + 1);
+        }
 
     }
 }
