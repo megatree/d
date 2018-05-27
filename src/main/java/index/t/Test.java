@@ -5,6 +5,8 @@ import okhttp3.Response;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -15,13 +17,16 @@ public class Test {
 
     public static void main(String[] args) throws IllegalAccessException {
 
-        Integer a = null;
-        int b = a;
-        System.out.println(b);
+        char[] c = new char[10];
+        c[0] = 'a';
+
+        String a = new String(c);
+
+        System.out.println(a);
 
     }
 
-    public enum E{
+    public enum E {
         ABC("def"),
         GHI("k");
 
