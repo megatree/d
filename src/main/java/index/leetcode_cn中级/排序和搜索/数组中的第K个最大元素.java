@@ -1,5 +1,6 @@
 package index.leetcode_cn中级.排序和搜索;
 
+import index.basicAlgo.Sorts;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -19,7 +20,9 @@ public class 数组中的第K个最大元素 {
 //        assert findKthLargest(arr, 4) == 3;
 //        assert findKthLargest(arr, 5) == 2;
 
-        findKthLargest(new int[]{99,99},1);
+        int[] arr2 = {99,99};
+        System.out.println(partition(arr2,0,arr.length-1,3));
+        System.out.println(Sorts.partition(arr2,0,arr.length-1,3));
     }
 
     public int findKthLargest_1(int[] nums, int k) {
@@ -29,6 +32,7 @@ public class 数组中的第K个最大元素 {
 
     /**
      * 要求第k大，考虑用partition方法
+     * 4ms On的partition方法
      *
      * @param nums
      * @param k
@@ -43,7 +47,7 @@ public class 数组中的第K个最大元素 {
     }
 
     public int find(int[] arr, int start, int end, int i) {
-        int p = partition(arr, start, end, i);
+        int p = Sorts.partition(arr, start, end, i);
 
         if (p > i) {
             return find(arr, start, p - 1, i);
@@ -77,10 +81,7 @@ public class 数组中的第K个最大元素 {
             if (i < j) {
                 swap(arr, pivotIndex, j);
                 pivotIndex = j;
-                //基准索引随之更新
-                if (i != begin) {
-                    i++;
-                }
+                i++;
             }
 
             while (i < j && arr[i] < pivot) {
@@ -90,9 +91,7 @@ public class 数组中的第K个最大元素 {
             if (i < j) {
                 swap(arr, pivotIndex, i);
                 pivotIndex = i;
-                if (j != end) {
-                    j--;
-                }
+                j--;
             }
         }
 
