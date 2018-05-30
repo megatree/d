@@ -18,14 +18,13 @@ public class Sorts {
     }
 
     public static int partition(int[] arr, int start, int end, int pivotIndex) {
-        if (arr == null) {
-            throw new RuntimeException("数组不能为空");
+        if (arr == null || arr.length == 0) {
+            return 0;
         }
 
         int pivot = arr[pivotIndex];
         swap(arr, pivotIndex, end);
         int storeIndex = start;
-        //这个循环比一般的写法简洁高效，呵呵维基百科上看到的
         for (int i = start; i < end; i++) {
             if (arr[i] < pivot) {
                 swap(arr, i, storeIndex);

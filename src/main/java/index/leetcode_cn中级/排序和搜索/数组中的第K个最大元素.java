@@ -15,14 +15,11 @@ public class 数组中的第K个最大元素 {
     @Test
     public void go() {
         int[] arr = {3, 2, 3, 1, 4, 5};
-//        assert findKthLargest(arr, 1) == 5;
-//        assert findKthLargest(arr, 3) == 3;
-//        assert findKthLargest(arr, 4) == 3;
-//        assert findKthLargest(arr, 5) == 2;
+        assert findKthLargest(arr, 1) == 5;
+        assert findKthLargest(arr, 3) == 3;
+        assert findKthLargest(arr, 4) == 3;
+        assert findKthLargest(arr, 5) == 2;
 
-        int[] arr2 = {99,99};
-        System.out.println(partition(arr2,0,arr.length-1,3));
-        System.out.println(Sorts.partition(arr2,0,arr.length-1,3));
     }
 
     public int findKthLargest_1(int[] nums, int k) {
@@ -47,7 +44,8 @@ public class 数组中的第K个最大元素 {
     }
 
     public int find(int[] arr, int start, int end, int i) {
-        int p = Sorts.partition(arr, start, end, i);
+//        int p = Sorts.partition(arr, start, end, i);
+        int p = partition(arr, start, end, i);
 
         if (p > i) {
             return find(arr, start, p - 1, i);
@@ -67,35 +65,23 @@ public class 数组中的第K个最大元素 {
      * @return
      */
     public int partition(int[] arr, int begin, int end, int pivotIndex) {
+        pivotIndex = begin;
         int pivot = arr[pivotIndex];
-        int i = begin;
-        int j = end;
+        swap(arr, pivotIndex, end);
 
-        while (i < j) {
+        int low = begin;
+        int high = end;
 
-            while (i < j && arr[j] > pivot) {
-                j--;
-            }
-
-            //右边小于等于pivot，和pivot交换位置
-            if (i < j) {
-                swap(arr, pivotIndex, j);
-                pivotIndex = j;
-                i++;
-            }
-
-            while (i < j && arr[i] < pivot) {
-                i++;
-            }
-
-            if (i < j) {
-                swap(arr, pivotIndex, i);
-                pivotIndex = i;
-                j--;
+        while (low < high) {
+            while (low < high && arr[low] < pivot) low++;
+            while (low < high && arr[high] > pivot) high--;
+            if (low < high) {
+                swap(arr, low, high);
             }
         }
 
-        return i;
+        swap(arr, low, end);
+        return low;
     }
 
     public void swap(int[] arr, int i, int j) {
