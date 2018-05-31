@@ -28,13 +28,22 @@ public class 搜索范围 {
 
     @Test
     public void go() {
-        int[] arr = {1, 4};
-        System.out.println(Arrays.toString(searchRange(arr, 4)));
+        int[] arr = {5, 7, 7, 8, 8, 10};
+        System.out.println(Arrays.toString(searchRange(arr, 6)));
 
+        int[] arr2 = {1,4};
+        System.out.println(Arrays.toString(searchRange(arr2, 4)));
+    }
+
+    @Test
+    public void go2(){
+        int[] arr2 = {4,4};
+        System.out.println(Arrays.toString(searchRange(arr2, 4)));
     }
 
     /**
      * 二分搜索
+     * 6ms 86.10%
      *
      * @param nums
      * @param target
@@ -82,14 +91,16 @@ public class 搜索范围 {
                 re[0] = i;
                 re[1] = j;
                 return re;
-            } else if (nums[mid] > target) {
+            } else if (nums[mid] > target && nums[left] <= target) {
                 right = mid;
-            } else {
+            } else if (nums[mid] < target && nums[right] >= target) {
                 if (left == mid) {
                     left = mid + 1;
                 } else {
                     left = mid;
                 }
+            } else {
+                return re;
             }
         }
 
