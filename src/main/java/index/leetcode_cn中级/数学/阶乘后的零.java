@@ -29,9 +29,12 @@ public class 阶乘后的零 {
     }
 
     public int trailingZeroes(int n) {
-        int _2 = n/2;
-        int _5 = n/5;
-        return Math.min(_2,_5);
+        int re = 0;
+        while (n >= 5) {
+            n /= 5;
+            re += n;
+        }
+        return re;
     }
 
 }
