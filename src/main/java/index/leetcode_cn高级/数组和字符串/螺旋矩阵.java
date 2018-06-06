@@ -39,11 +39,32 @@ public class 螺旋矩阵 {
                 {9, 10, 11, 12}
         };
 
+        int[][] m6 = {
+                {1},
+                {2},
+                {3}
+        };
+
+        int[][] m7 = {
+                {1, 11},
+                {2, 12},
+                {3, 13},
+                {4, 14},
+                {5, 15},
+                {6, 16},
+                {7, 17},
+                {8, 18},
+                {9, 19},
+                {10, 20}
+        };
+
 //        System.out.println(spiralOrder(m1));
 //        System.out.println(spiralOrder(m2));
 //        System.out.println(spiralOrder(m3));
 //        System.out.println(spiralOrder(m4));
-        System.out.println(spiralOrder(m5));
+//        System.out.println(spiralOrder(m5));
+//        System.out.println(spiralOrder(m6));
+        System.out.println(spiralOrder(m7));
     }
 
     /**
@@ -54,7 +75,7 @@ public class 螺旋矩阵 {
      * @return
      */
     @Deprecated
-    public List<Integer> spiralOrder(int[][] matrix) {
+    public List<Integer> spiralOrder_1(int[][] matrix) {
         List<Integer> list = new LinkedList<>();
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return list;
@@ -123,7 +144,37 @@ public class 螺旋矩阵 {
         int row = matrix.length;
         int col = matrix[0].length;
 
+        int level = 0;
+        while (true) {
 
+            //左向右
+            for (int i = level; i < col - level && level < row - level; i++) {
+                list.add(matrix[level][i]);
+            }
 
+            //上下
+            for (int i = level + 1; i < row - level && col - level - 1 >= level; i++) {
+                list.add(matrix[i][col - level - 1]);
+            }
+
+            int limit = Math.min(row, col);
+            if (level >= limit / 2) {
+                break;
+            }
+
+            //右左
+            for (int i = col - level - 2; i >= level; i--) {
+                list.add(matrix[row - level - 1][i]);
+            }
+
+            //下上
+            for (int i = row - level - 2; i >= level + 1; i--) {
+                list.add(matrix[i][level]);
+            }
+
+            level++;
+        }
+
+        return list;
     }
 }
