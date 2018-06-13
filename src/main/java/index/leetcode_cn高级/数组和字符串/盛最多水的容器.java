@@ -14,17 +14,71 @@ import org.junit.Test;
  */
 public class 盛最多水的容器 {
 
+    private int max = 0;
+
     @Test
     public void go() {
+        int[] arr = {0, 1, 5, 3, 4, 6, 2, 0, 0, 7, 8, 6};
+        System.out.println(maxArea(arr));
+    }
+
+    @Test
+    public void go2() {
+        int[] arr = {1, 1};
+        System.out.println(maxArea(arr));
 
     }
 
     /**
      * 木桶理论
+     *
+     * @param height
+     * @return
+     */
+    public int maxArea_(int[] height) {
+
+        int minHeight = 0;
+        int startIndex = 0;
+
+        for (int i = 0; i < height.length; i++) {
+
+            if (height[i] == 0) {
+                //宽高设为0
+                startIndex = -1;
+                minHeight = 0;
+                continue;
+            }
+
+            //当前元素不为0，宽度自增
+            if (startIndex < 0) {
+                startIndex = i;
+            }
+
+            if (minHeight > 0) {
+                minHeight = Math.min(height[i], minHeight);
+            } else {
+                minHeight = height[i];
+            }
+
+            int content = (i - startIndex) * minHeight;
+            max = Math.max(content, max);
+
+        }
+
+        return max;
+    }
+
+    /**
+     * 每条线即为木桶的边，底部宽应为索引之差
+     * 使用双向指针法，从两侧向中间遍历。较短的一条边进行移动
+     *
      * @param height
      * @return
      */
     public int maxArea(int[] height) {
+
+
+
 
     }
 }
