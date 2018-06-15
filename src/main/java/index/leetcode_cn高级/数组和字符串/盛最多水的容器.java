@@ -70,14 +70,31 @@ public class 盛最多水的容器 {
 
     /**
      * 每条线即为木桶的边，底部宽应为索引之差
+     * 这个木桶仅有左右两条线决定容量，中间线段不受影响
+     * <p>
      * 使用双向指针法，从两侧向中间遍历。较短的一条边进行移动
+     *
+     * 9ms 80.87%
      *
      * @param height
      * @return
      */
     public int maxArea(int[] height) {
+        int start = 0;
+        int end = height.length - 1;
 
+        int max = 0;
+        while (start < end) {
 
-        return 0;
+            int h = Math.min(height[start], height[end]);
+            max = Math.max(max, (end - start) * h);
+            if (height[start] < height[end]) {
+                start++;
+            } else {
+                end--;
+            }
+        }
+
+        return max;
     }
 }
