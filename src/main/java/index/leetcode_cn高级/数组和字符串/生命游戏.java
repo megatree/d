@@ -1,5 +1,6 @@
 package index.leetcode_cn高级.数组和字符串;
 
+import index.common.MatrixUtils;
 import org.junit.Test;
 
 /**
@@ -14,7 +15,16 @@ public class 生命游戏 {
 
     @Test
     public void go() {
+        int[][] board = {
+                {0, 1, 0},
+                {0, 0, 1},
+                {1, 1, 1},
+                {0, 0, 0}
+        };
 
+        gameOfLife(board);
+
+        MatrixUtils.print(board);
     }
 
     public void gameOfLife(int[][] board) {
@@ -27,12 +37,30 @@ public class 生命游戏 {
 
         for (int r = 0; r < row; r++) {
             for (int c = 0; c < col; c++) {
-                changeState(r, c);
+                changeState(board, r, c);
+            }
+        }
+
+        for (int r = 0; r < row; r++) {
+            for (int c = 0; c < col; c++) {
+                int t = board[r][c];
+                if (t == 2) {
+                    board[r][c] = 1;
+                } else if (t == 3) {
+                    board[r][c] = 0;
+                }
             }
         }
 
     }
 
+    /**
+     * 0、1、2（0->1）、3（1->0）
+     *
+     * @param board
+     * @param r
+     * @param c
+     */
     public void changeState(int[][] board, int r, int c) {
         int sum = 0;
         sum += checkState(board, r - 1, c - 1);
@@ -44,8 +72,17 @@ public class 生命游戏 {
         sum += checkState(board, r + 1, c - 1);
         sum += checkState(board, r, c - 1);
 
-        if (sum==2){
-
+        //维持现状 if (sum == 2)
+        if (sum == 3) {
+            //强制存活
+            if (board[r][c] == 0) {
+                board[r][c] = 2;
+            }
+        } else if (sum != 2) {
+            //强制死亡
+            if (board[r][c] == 1) {
+                board[r][c] = 3;
+            }
         }
     }
 
