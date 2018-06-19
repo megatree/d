@@ -2,6 +2,8 @@ package index.leetcode_cn高级.数组和字符串;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * Created by wangzhe.bj on 2018-06-19.
  * <p>
@@ -38,7 +40,7 @@ public class 最小窗口子字符串 {
         System.out.println(min);
     }
 
-    public String minWindow(String s, String t) {
+    public String minWindow_(String s, String t) {
         if ("".equals(s) || "".equals(t)) {
             return "";
         }
@@ -131,4 +133,43 @@ public class 最小窗口子字符串 {
             map[t.charAt(i)] = v + 1;
         }
     }
+
+    @Test
+    public void go4(){
+        minWindow("abcabc","bc");
+    }
+
+    public String minWindow(String src, String target) {
+        if ("".equals(src) || "".equals(target)) {
+            return "";
+        }
+
+        int tlen = target.length();
+        int slen = src.length();
+
+        if (slen < tlen) {
+            return "";
+        }
+
+        int[] targetMap = new int[128];
+        int[] srcMap = new int[128];
+
+        for (int i = 0; i < tlen; i++) {
+            targetMap[target.charAt(i)]++;
+        }
+
+        //从左向右滑动窗口
+        int start = 0;
+        int end = 0;
+        for (end = 0; end < slen; end++) {
+            //右边界先向右扩展，找齐所有数字
+            //然后左边界向右移动，缩小滑动窗口
+
+//            aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAwMzcwNzMxMw==
+        }
+
+
+        return null;
+    }
+
 }
