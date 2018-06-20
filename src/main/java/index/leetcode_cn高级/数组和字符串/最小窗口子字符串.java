@@ -135,10 +135,18 @@ public class 最小窗口子字符串 {
     }
 
     @Test
-    public void go4(){
-        minWindow("abcabc","bc");
+    public void go4() {
+        System.out.println(minWindow("abcabc", "bc"));
     }
 
+    /**
+     * 5ms
+     * 92.61%
+     *
+     * @param src
+     * @param target
+     * @return
+     */
     public String minWindow(String src, String target) {
         if ("".equals(src) || "".equals(target)) {
             return "";
@@ -161,15 +169,47 @@ public class 最小窗口子字符串 {
         //从左向右滑动窗口
         int start = 0;
         int end = 0;
+        //最终结果起止索引
+        int index1 = -1;
+        int index2 = slen;
+        int found = 0;
         for (end = 0; end < slen; end++) {
             //右边界先向右扩展，找齐所有数字
-            //然后左边界向右移动，缩小滑动窗口
+            //然后左边界向右移动，缩小滑动窗口，直到不能再移动
+            //这时右边界再继续向右移动
 
-//            aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAwMzcwNzMxMw==
+            char charEnd = src.charAt(end);
+            srcMap[charEnd]++;
+
+            //表明src
+            if (srcMap[charEnd] <= targetMap[charEnd]) {
+                found++;
+            }
+
+            if (found == tlen) {
+                //找全了一个相对范围较大的窗口，现在要把左边界向右移动直到最小
+                while (start < end && (srcMap[src.charAt(start)] - 1 >= targetMap[src.charAt(start)] || targetMap[src.charAt(start)] == 0)) {
+                    //条件：窗口左边界右移不减少结果，并且过滤掉target中不存在的字符
+                    srcMap[src.charAt(start)]--;
+                    start++;
+                }
+
+                if (end - start < index2 - index1) {
+                    //跟上个索引记录比较，如果更短则记录
+                    index1 = start;
+                    index2 = end;
+                }
+
+                //start 后移一位，end 继续向右
+                srcMap[src.charAt(start)]--;
+                found--;
+                start++;
+            }
+
         }
 
 
-        return null;
+        return index1 < 0 ? "" : src.substring(index1, index2 + 1);
     }
 
 }
