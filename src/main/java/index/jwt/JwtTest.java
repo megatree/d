@@ -6,6 +6,8 @@ import io.jsonwebtoken.SignatureException;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by mythss on 2018-07-26.
@@ -13,6 +15,13 @@ import java.util.Date;
 public class JwtTest {
 
 
+    @Test
+    public void t2(){
+        System.out.println(String.format("%04d",12213));
+
+        ExecutorService es = Executors.newCachedThreadPool();
+        es.shutdownNow();
+    }
 
     @Test
     public void test(){
