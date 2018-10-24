@@ -7,6 +7,14 @@ import java.util.Arrays;
 /**
  * Created by wangzhe.bj on 2018-05-16.
  * <p>
+ *
+ * 给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。
+ *
+ * 说明:
+ *
+ * 初始化 nums1 和 nums2 的元素数量分别为 m 和 n。
+ * 你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。
+ *
  * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/8/sorting-and-searching/52/
  */
 public class 合并两个有序数组 {
@@ -47,6 +55,8 @@ public class 合并两个有序数组 {
     /**
      * 解法2
      * 从后往前扫描
+     * 由于两个数组是有序的，因此从两个数组末尾向前扫，比较取出大的那个放在位置上
+     *
      * O(n)
      * 4ms 91.71%
      *
@@ -60,8 +70,11 @@ public class 合并两个有序数组 {
             return;
         }
 
+        //末尾下标
         int i = m + n - 1;
+        //数组1末尾
         int index1 = m - 1;
+        //数组2末尾
         int index2 = n - 1;
 
         while (index1 >= 0 && index2 >= 0) {

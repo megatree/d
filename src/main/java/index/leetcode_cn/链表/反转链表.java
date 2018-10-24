@@ -33,4 +33,30 @@ public class 反转链表 {
 
         return l;
     }
+
+    /**
+     * 反转单链表
+     * @param head
+     * @return
+     */
+    public ListNode reverseList2(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+
+        ListNode l = head;
+        ListNode r = head.next;
+        l.next = null;
+
+        while (r!=null){
+            ListNode t = r.next;
+            r.next = l;
+
+            l = r;
+            r = t;
+        }
+
+        return l;
+
+    }
 }

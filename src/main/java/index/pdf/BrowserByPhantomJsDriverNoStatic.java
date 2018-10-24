@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * Create by user on 2018-09-26
  */
-@Slf4j
+
 public class BrowserByPhantomJsDriverNoStatic {
 
     private PhantomJSDriver webDriver = null;

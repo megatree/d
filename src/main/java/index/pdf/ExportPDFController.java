@@ -26,7 +26,7 @@ import java.util.TreeMap;
 /**
  * Create by user on 2018-09-17
  */
-@Slf4j
+
 @Controller
 @RequestMapping("/pdf")
 public class ExportPDFController {
