@@ -89,6 +89,15 @@ public class 搜索旋转排序数组 {
         }
     }
 
+    /**
+     * @see 二分法研究#binarySearch(int[], int)
+     * @param nums
+     * @param start
+     * @param end
+     * @param target
+     * @return
+     */
+    @Deprecated
     public int binarySearch(int[] nums, int start, int end, int target) {
         int l = start;
         int r = end;

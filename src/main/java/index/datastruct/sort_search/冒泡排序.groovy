@@ -72,7 +72,6 @@ def bubbleSort2(int[] array) {
                 Sorts.swap(array, j, j + 1)
             }
         }
-
     }
     println array
 }
