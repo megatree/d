@@ -1,6 +1,7 @@
 package index.collections.linkedlist;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  * Created by wangzhe.bj on 2017/11/13.
@@ -12,6 +13,7 @@ public class MyLinkedList<E> implements Cloneable, Serializable {
     private Node<E> tail;
 
     public MyLinkedList() {
+
     }
 
     public void add(E element) {
