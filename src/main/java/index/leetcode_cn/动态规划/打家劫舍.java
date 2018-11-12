@@ -31,6 +31,7 @@ public class 打家劫舍 {
 
     /**
      * dp(i) = max( dp(i-1), dp(i-2) + nums[i])
+     * 在dp i-1 与 dp i-2 加 当前值 中找出最大的
      *
      * @param nums
      * @return
