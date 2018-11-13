@@ -10,7 +10,7 @@ public class 二分法研究 {
     @Test
     public void test() {
         int[] arr = {0, 1, 2, 4, 5, 7, 8, 11};
-        System.out.println(binarySearch(arr, 12));
+        System.out.println(binarySearch(arr, 6));
     }
 
     /**
@@ -22,15 +22,18 @@ public class 二分法研究 {
      * @return
      */
     public int binarySearch(int[] arr, int k) {
+        //没有长度
         if (arr == null || arr.length == 0) {
             return -1;
         }
         int len = arr.length;
 
+        //长度为1
         if (len == 1) {
             return arr[0] == k ? 0 : -1;
         }
 
+        //超出两端大小限制
         if (k < arr[0] || k > arr[len - 1]) {
             return -1;
         }
@@ -38,7 +41,7 @@ public class 二分法研究 {
         int l = 0;
         int r = len - 1;
 
-        while (l < r) {
+        while (l <= r) {
             int mid = (l + r) / 2;
 
             if (arr[mid] == k) {
