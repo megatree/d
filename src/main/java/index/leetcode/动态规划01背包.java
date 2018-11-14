@@ -83,7 +83,7 @@ public class 动态规划01背包 {
             for (int j = 0; j < capacity + 1; j++) {
                 //当前容量能装下物品i
                 if (j >= w[i]) {
-                    cur[j] = Math.max(pre[j], val[i] + pre[j - w[i]]);
+                    cur[j] = Math.max(pre[j], pre[j - w[i]] + val[i]);
                 } else {
                     cur[j] = pre[j];
                 }

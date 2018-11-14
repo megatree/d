@@ -12,10 +12,12 @@ import java.util.concurrent.Executors;
 public class CyclicBarrierTest {
 
     public static void main(String[] args) {
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> {
+            System.out.println("都会执行的内容 "+ Thread.currentThread().getName());
+        });
 
         ExecutorService es = Executors.newCachedThreadPool();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
             es.submit(() -> {
                 System.out.println("线程" + Thread.currentThread().getName() + " 进入");
                 Random random = new Random();
@@ -32,11 +34,18 @@ public class CyclicBarrierTest {
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-                System.out.println("线程" + Thread.currentThread().getName() + " 从等待中继续");
+                System.out.println("线程" + Thread.currentThread().getName() + " 从等待中恢复");
+                try {
+                    Thread.sleep(5 * 1000 + 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("线程" + Thread.currentThread().getName() + " 结束");
 
 
             });
         }
+        es.shutdown();
 
     }
 }
