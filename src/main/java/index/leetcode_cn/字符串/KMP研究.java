@@ -42,4 +42,5 @@ public class KMP研究 {
 //    作者：逍遥行
 //    链接：https://www.zhihu.com/question/21923021/answer/37475572
     //https://segmentfault.com/a/1190000008575379
+    //https://segmentfault.com/a/1190000007066358
 }
