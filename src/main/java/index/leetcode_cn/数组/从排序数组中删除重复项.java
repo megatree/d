@@ -15,7 +15,7 @@ public class 从排序数组中删除重复项 {
 
     @Test
     public void go() {
-        int[] arr = {1, 1, 2, 5, 0, 4, 0};
+        int[] arr = {1, 1, 2, 5, 5, 8, 10};
 
         assert removeDuplicates(arr) == 5;
         System.out.println(Arrays.toString(arr));
@@ -23,6 +23,7 @@ public class 从排序数组中删除重复项 {
 
     /**
      * 不需要排序,遍历赋值
+     * 剩余空位如何处理
      *
      * @param nums
      * @return

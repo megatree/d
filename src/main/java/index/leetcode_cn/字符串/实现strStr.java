@@ -24,6 +24,13 @@ public class 实现strStr {
 
     }
 
+
+    /**
+     * 可以用KMP优化
+     * @param haystack
+     * @param needle
+     * @return
+     */
     public int strStr(String haystack, String needle) {
         if (needle == null || needle.length() == 0) {
             return 0;

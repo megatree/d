@@ -99,5 +99,4 @@ public class 完全背包 {
         System.out.println(Arrays.toString(cur));
         return cur[capacity];
     }
-
 }
