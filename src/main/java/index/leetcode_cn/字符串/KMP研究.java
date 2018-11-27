@@ -21,6 +21,12 @@ public class KMP研究 {
         System.out.println(Arrays.toString(next));
     }
 
+    @Test
+    public void test2() {
+        assert strStr("mississippi", "pi") == 9;
+        assert strStr("mississippi", "issip") == 4;
+    }
+
     /**
      * 构造模式串的最大匹配数表
      *
@@ -46,6 +52,54 @@ public class KMP研究 {
         }
         return next;
 
+    }
+
+    /**
+     * 返回匹配到的索引开始位置
+     *
+     * @param string  主串
+     * @param pattern 模式串
+     * @return
+     */
+    public int strStr(String string, String pattern) {
+        if (string == null || string.length() == 0
+                || pattern == null || pattern.length() == 0
+                || pattern.length() > string.length()) {
+            return -1;
+        }
+
+        //正常情况
+        int[] next = getNext(pattern);
+        int i = 0, j = 0;
+        while (i < string.length()) {
+
+            //如果当前索引匹配上
+            if (j >= 0 && j < pattern.length()
+                    && string.charAt(i) == pattern.charAt(j)) {
+
+                //j匹配到最后一个
+                if (j == pattern.length() - 1) {
+                    return i - j;
+                }
+
+                i++;
+                j++;
+                continue;
+            }
+
+            //索引未匹配，模式串移动下标
+            if (j < 0) {
+                //-1
+                i++;
+                j++;
+                continue;
+            }
+
+            //j重新赋值后才允许进行判断
+            j = next[j];
+        }
+
+        return -1;
     }
 
 }
