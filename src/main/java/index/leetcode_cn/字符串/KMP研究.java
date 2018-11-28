@@ -49,14 +49,14 @@ public class KMP研究 {
 
         while (j < p.length - 1) {
             if (k == -1 || p[j] == p[k]) {
-
-                next[++j] = ++k;
+                j++;
+                k++;
+                next[j] = k;
             } else {
                 k = next[k];
             }
         }
         return next;
-
     }
 
     /**
