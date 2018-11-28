@@ -27,6 +27,11 @@ public class KMP研究 {
         assert strStr("mississippi", "issip") == 4;
     }
 
+    @Test
+    public void test3(){
+        System.out.println(strStr("abcdab","ef"));
+    }
+
     /**
      * 构造模式串的最大匹配数表
      *
@@ -62,16 +67,20 @@ public class KMP研究 {
      * @return
      */
     public int strStr(String string, String pattern) {
-        if (string == null || string.length() == 0
-                || pattern == null || pattern.length() == 0
+        if (string == null
+                || pattern == null
                 || pattern.length() > string.length()) {
             return -1;
+        }
+
+        if ( pattern.length() == 0){
+            return 0;
         }
 
         //正常情况
         int[] next = getNext(pattern);
         int i = 0, j = 0;
-        while (i < string.length()) {
+        while (i < string.length() && j < pattern.length()) {
 
             //如果当前索引匹配上
             if (j >= 0 && j < pattern.length()
