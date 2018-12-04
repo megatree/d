@@ -12,6 +12,7 @@
 
 ### IntelliJ IDEA ###
 .idea
+d.iml
 *.iws
 *.iml
 *.ipr
