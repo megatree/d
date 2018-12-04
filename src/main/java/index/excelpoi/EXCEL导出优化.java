@@ -47,6 +47,7 @@ public class EXCEL导出优化 {
                 cell.setCellValue(address);
             }
 
+
             // manually control how rows are flushed to disk
             if (rownum % 100 == 0) {
                 ((SXSSFSheet) sh).flushRows(100);
