@@ -24,8 +24,8 @@ import java.util.Queue;
  * The point (1,2) is an ideal empty land to build a house, as the total travel distance of 3+3+1=7 is minimal. So return 7.
  * <p>
  * Note:
- * There will be at least one building. If it is not possible to build such house according to the above rules, return -1.
  * <p>
+ * There will be at least one building. If it is not possible to build such house according to the above rules, return -1.
  * 求最小距离和，一般最短路径问题应用BFS
  */
 public class Shortest_Distance_from_All_Buildings {
