@@ -1,5 +1,6 @@
 package index.leetcode;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -44,6 +45,16 @@ public class Walls_and_Gates {
             {-1, -1, 0, 0},
     };
 
+    @Before
+    public void set() {
+        rooms = new int[][]{
+                {-1, 0, -1},
+                {Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE},
+                {-1, Integer.MAX_VALUE, 0},
+        };
+    }
+
+
     @Test
     public void go() {
         wallsAndGates(rooms);
@@ -54,7 +65,8 @@ public class Walls_and_Gates {
 
 
     /**
-     * BFS，从门开始扫
+     * BFS，从每个门开始扫，先扫其第一层。
+     * 然后把每个门第二层依次放入队列，取出继续扫。这样不存在覆盖最短距离的情况
      *
      * @param rooms
      */
@@ -83,7 +95,7 @@ public class Walls_and_Gates {
                 int y = coords[1] + directs[i][1];
 
                 if (x >= 0 && x < rows && y >= 0 && y < cols && rooms[x][y] == Integer.MAX_VALUE) {
-                    rooms[x][y] = Math.min(rooms[x][y], rooms[coords[0]][coords[1]] + 1);
+                    rooms[x][y] = rooms[coords[0]][coords[1]] + 1;
                     queue.offer(new int[]{x, y});
                 }
             }
