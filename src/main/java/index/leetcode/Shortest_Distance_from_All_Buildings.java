@@ -114,6 +114,8 @@ public class Shortest_Distance_from_All_Buildings {
             //基础坐标 i j更换时，此值才发生变化
             distance++;
 
+            //因为在此之后添加的点，都是原位置的四个方向，因此distance是不变的，都是1
+            //不能随循环增加
             int k = queue.size();
             for (int l = 0; l < k; l++) {
                 int[] coords = queue.poll();
