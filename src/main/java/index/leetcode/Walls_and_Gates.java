@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -85,6 +86,7 @@ public class Walls_and_Gates {
                 }
             }
         }
+
 
         int[][] directs = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
         while (!queue.isEmpty()) {
