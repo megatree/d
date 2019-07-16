@@ -11,7 +11,7 @@ public class ThreadInterrupt {
     public static void main(String[] args) throws InterruptedException {
         Thread t1= new Thread(new MyThread());
         t1.start();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
 
         t1.interrupt();
 
@@ -22,7 +22,12 @@ public class ThreadInterrupt {
         @Override
         public void run() {
             try {
-                Thread.currentThread().wait();
+//                Thread.currentThread().wait();
+                while (!Thread.currentThread().isInterrupted()) {
+                    Thread.sleep(1000);
+                    //sleep wait 会抛异常
+                    System.out.println("睡眠1次");
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

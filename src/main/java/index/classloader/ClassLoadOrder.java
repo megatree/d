@@ -44,6 +44,10 @@ public class ClassLoadOrder {
 
     public static class B extends A{
 
+        static {
+            System.out.println("子类静态代码块靠前");
+        }
+
         public static int b = getB();
 
         public static int getB(){
@@ -59,9 +63,7 @@ public class ClassLoadOrder {
             return 2;
         }
 
-        static {
-            System.out.println("子类静态代码块");
-        }
+
 
         {
             System.out.println("子类非静态代码块");

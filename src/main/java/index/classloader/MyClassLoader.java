@@ -35,6 +35,11 @@ public class MyClassLoader extends ClassLoader {
         return super.findClass(name);
     }
 
+    @Override
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        return super.loadClass(name);
+    }
+
     private File getClassFile(String name) {
         File file = new File("D:/Person.class");
         return file;
